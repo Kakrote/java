@@ -8,6 +8,7 @@ public class array_in_java {
         System.out.println("The index value for neha is "+index);
         marks[index]="Muskhan";
         System.out.println("The new vlaue for "+index+" is "+marks[index]);
+        // System.out.println("The new vlaue for "+index+" is "+marks[index])
         
         }
             
