@@ -5,7 +5,7 @@ public class celling_number {
 
     public static void main(String[] args) {
         int [] arr={2,3,4,9,14,16,18};
-        int target=16;
+        int target=15;
         int a=celling(arr, target);
         System.out.println(a);
 
@@ -17,7 +17,7 @@ public class celling_number {
         while (start<=end) {
             int mid=start+(end-start)/2;
             if(target==arr[mid]){
-                return mid;
+                return arr[mid];
             }            
             else if(target<arr[mid]){
                 end=mid;
@@ -27,7 +27,7 @@ public class celling_number {
                 start=mid;
             }
         }
-        return -1;
+        return start;
 
     }
 }
