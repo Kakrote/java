@@ -11,10 +11,10 @@ public class First_and_Last_positon {
 
     }
 
-    public static int[] position(int[] arr, int target) {
+    public static int[] position(int[] nums, int target)  {
         int[] ans = {-1, -1};
-        int start = search(arr, target, true);
-        int end = search(arr, target, false);
+        int start = search(nums, target, true);
+        int end = search(nums, target, false);
         ans[0] = start;
         ans[1] = end;
         return ans;
