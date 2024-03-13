@@ -28,6 +28,7 @@ public class Search_In_Rotated_Sorted_Array {
         // case 3 the target is smaller the starting element
         return binaryserarch(nums, target,pivot+1, end);
     }
+    // this wont work with duplicate values.
     static int find_Pivot(int []arr){
         int start=0;
         int end=arr.length-1;
