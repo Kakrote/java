@@ -37,7 +37,7 @@ public class Search_In_Rotated_Sorted_Array {
             if(mid < end && arr[mid]>arr[mid+1]){
                 return mid;
             }
-            else if(mid > end && arr[mid]<arr[mid-1]){
+            else if(mid > start && arr[mid]<arr[mid-1]){
                 return mid-1;
             }
             else if(arr[mid]<=arr[start]){
