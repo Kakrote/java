@@ -11,10 +11,12 @@ public class MurgeeSort {
         System.out.println(Arrays.toString(arr));
     }
     public static int[] mergeSort(int arr[]) {
+        // this is the base condtion where the function will retun 
         if (arr.length == 1) {
             return arr;
         }
         int mid = arr.length / 2;  // Ensure correct mid calculation
+        // we will split the arrays into two sub arrays 
         int left[] = mergeSort(Arrays.copyOfRange(arr, 0, mid));
         int right[] = mergeSort(Arrays.copyOfRange(arr, mid, arr.length));
         return marge(left, right);
@@ -36,7 +38,7 @@ public class MurgeeSort {
                 mix[k]=secound[j];
                 j++;
             }
-            k++;
+            k++; // the value of k should increase in both the condition's.
             
         }
         // now if any of the two arrays have the extra elements in them in that case we have to add those extra elements into the last of the array
