@@ -66,6 +66,16 @@ public class LL {
         System.out.print("End");
     }
 
+    // deleting 
+    public void deletFirst(){
+        head=head.next;
+        if(head==null){
+            tail=null;
+        }
+        System.out.println();
+        size--;
+    }
+
     private class Node{
         private int value;
         private Node next;
@@ -89,6 +99,8 @@ public class LL {
         l.insertEnd(20);
         l.insertAt(100, 3); 
         l.display(); // 13->12->11->10->end  
+        l.deletFirst();
+        l.display();
 
     }
 }
