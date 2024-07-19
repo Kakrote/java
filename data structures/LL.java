@@ -68,12 +68,64 @@ public class LL {
 
     // deleting 
     public void deletFirst(){
+        // this deletes from the first
         head=head.next;
         if(head==null){
             tail=null;
         }
         System.out.println();
         size--;
+    }
+
+    // deleting from last
+    public void deleteEnd(){
+        if(size<=1){
+            deletFirst();
+        }
+        Node temp=head;
+        for(int i=1;i<size-1;i++){
+            temp=temp.next;
+        }
+        tail=temp;
+        tail.next=null;
+        size--;
+        System.out.println();
+    }
+
+    //deleting in between
+    public void deleteAt(int index){
+        try{
+        if(index==0){
+            deletFirst();
+        }
+        else if(index==size-1){
+            deleteEnd();
+        }
+
+            Node prv=head;
+            for (int i = 1; i < index; i++) {
+                prv=prv.next;
+            }
+            prv.next=prv.next.next;
+            size--;
+            System.out.println();
+        }
+        catch(Exception e){
+            System.out.println();
+        }
+
+    }
+    // finding in a list
+
+    public Node find(int value){
+        Node node=head;
+        while(node!=null){
+            if(node.value==value){
+                return node;
+            }
+            node=node.next;
+        }
+        return null;
     }
 
     private class Node{
@@ -99,8 +151,10 @@ public class LL {
         l.insertEnd(20);
         l.insertAt(100, 3); 
         l.display(); // 13->12->11->10->end  
-        l.deletFirst();
+        System.out.println(l.size);
+        l.deleteAt(5);
         l.display();
-
+        System.out.println(l.size);
+        System.out.println(l.find(100));
     }
 }
