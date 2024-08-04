@@ -57,6 +57,49 @@ public class LL {
         size+=1;
     }
 
+    public void insertrec(int value,int index){
+        head=insertrec(value, index, head);
+    }
+    private Node insertrec(int value,int index,Node node){
+        if(index==0){
+            Node temp=new Node(value, node);
+            size++;
+            return temp;
+            
+        }
+        node.next=insertrec(value, index-1, node.next);
+        return node;
+    }
+
+    public static LL margeNode(LL list1,LL list2){
+        Node h1=list1.head;
+        Node h2=list2.head;
+        LL ans=new LL();
+        while (h1!=null && h2!=null) {
+            if(h1.value<h2.value){
+                ans.insertEnd(h1.value);
+                h1=h1.next;
+            }
+            else{
+
+                ans.insertEnd(h2.value);
+                h2=h2.next;
+            }
+            
+        }
+        while(h1!=null){
+            ans.insertEnd(h1.value);
+            h1=h1.next;
+        }
+        
+        while(h2!=null){
+            ans.insertEnd(h2.value);
+            h2=h2.next;
+        }
+        
+        return ans;
+    }
+
     public void display(){
         Node temp=head;
         while(temp!=null){
@@ -143,18 +186,17 @@ public class LL {
     }
     public static void main(String[] args) {
 
-        LL l=new LL();
-        l.insertfirst(10);
-        l.insertfirst(11);
-        l.insertfirst(12);
-        l.insertfirst(13);
-        l.insertEnd(20);
-        l.insertAt(100, 3); 
-        l.display(); // 13->12->11->10->end  
-        System.out.println(l.size);
-        l.deleteAt(5);
-        l.display();
-        System.out.println(l.size);
-        System.out.println(l.find(100));
+        LL l1=new LL();
+        LL l2=new LL();
+        l1.insertfirst(1);
+        l1.insertfirst(3);
+        l1.insertfirst(5);
+        l2.insertfirst(1);
+        l2.insertfirst(4);
+        l2.insertfirst(9);
+        l2.insertfirst(10);
+        l2.insertfirst(12);
+        LL ans=LL.margeNode(l1, l2);
+        ans.display();
     }
 }
