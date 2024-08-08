@@ -102,9 +102,10 @@ public class LL {
 
     public void display(){
         Node temp=head;
-        while(temp!=null){
-            System.out.print(temp.value+" -> ");
+        System.out.print(temp.value+" -> ");
+        while(temp.next !=null){
             temp=temp.next;
+            System.out.print(temp.value+" -> ");
         }
         System.out.print("End");
     }
@@ -196,7 +197,8 @@ public class LL {
         l2.insertfirst(9);
         l2.insertfirst(10);
         l2.insertfirst(12);
-        LL ans=LL.margeNode(l1, l2);
-        ans.display();
+        l1.display();
+        //LL ans=LL.margeNode(l1, l2);
+        //ans.display();
     }
 }

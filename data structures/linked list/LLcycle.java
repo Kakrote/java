@@ -13,25 +13,17 @@ public class LLcycle {
         size += 1;
     }
 
-    public boolean isCycle(LLcycle list) {
-        Node p1 = head;
-        Node p2 = head;
-        for (int i = 1; i < list.size ; i++) {
-            p2 = p2.next;
-        }
-        while (p1 != p2) {
-
-            if (p2.next == null) {
-                return false;
-            }
-            if (p2.next == p1) {
+    public boolean isCycle(LLcycle list){
+        Node slow=list.head;
+        Node fast=list.head; 
+        while (fast.next!=null && fast!=null) {
+            fast=fast.next.next;
+            slow=slow.next;
+            if(slow==fast){
                 return true;
-
             }
-            p1 = p1.next;
-
         }
-        return true;
+        return false;
     }
 
     public void display() {
@@ -42,6 +34,35 @@ public class LLcycle {
 
         }
         System.out.println("end");
+    }
+
+    public  int length_of_cycle(LLcycle list){
+        int len=0;
+        if(isCycle(list)){
+            Node slow=head;
+            Node fast=head;
+            while (fast.next!=null && fast!=null) {
+                
+                fast=fast.next.next;
+                slow=slow.next;
+                if(slow==fast){
+                    Node temp=slow;
+                    // System.out.println(temp.value);
+                    do{
+                        len+=1;
+                        temp=temp.next;
+                    }
+                    while(temp!=slow);
+                    break;
+                }
+                
+                
+            }
+
+
+        }
+        
+        return len;
     }
 
     class Node {
@@ -63,11 +84,14 @@ public class LLcycle {
         LLcycle l1 = new LLcycle();
         l1.insertFirst(1);
         l1.insertFirst(2);
-        l1.insertFirst(11);
-        l1.insertFirst(14);
-        // l1.display();
+        l1.insertFirst(3);
+        l1.insertFirst(4);
+        l1.insertFirst(5);
+        l1.insertFirst(6);
+        l1.display();
         l1.tail.next=l1.head.next;
         System.out.println(l1.isCycle(l1));
+        System.out.println(l1.length_of_cycle(l1));
         // l1.display();
     }
 
