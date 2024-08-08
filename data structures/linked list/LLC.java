@@ -1,4 +1,4 @@
-import org.w3c.dom.Node;
+// import org.w3c.dom.Node;
 
 class ListNode {
     int val;
@@ -59,27 +59,27 @@ public class LLC {
         }
         return false;
     }
-    public static int length_of_cycle(LLC list){
+    public  int length_of_cycle(LLC list){
         int len=0;
-        if(list.isCycle()){
+        if(isCycle()){
             ListNode slow=head;
             ListNode fast=head;
             while (fast.next!=null && fast!=null) {
-
+                
                 fast=fast.next.next;
                 slow=slow.next;
                 if(slow==fast){
+                    ListNode temp=slow;
+                    // System.out.println(temp.value);
+                    do{
+                        len+=1;
+                        temp=temp.next;
+                    }
+                    while(temp!=slow);
                     break;
                 }
                 
-            }
-            ListNode temp=slow;
-            while (temp!=slow) {
-                temp=temp.next;
-                len+=1;
-                if(temp==slow){
-                    return len;
-                }
+                
             }
 
 
