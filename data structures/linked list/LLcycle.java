@@ -65,6 +65,31 @@ public class LLcycle {
         return len;
     }
 
+    public Node detectCycle(Node head) {
+        Node slow=head;
+        Node fast=head;
+        while (fast!=null && fast.next!=null) {
+            fast=fast.next.next;
+            slow=slow.next;
+            if(slow==fast){
+                Node ptr1=head;
+                Node ptr2=slow;
+                while (ptr1!=ptr2) {
+                    
+                    ptr2=ptr2.next;
+                    ptr1=ptr1.next;
+                    if(ptr1==ptr2){
+                        return ptr1;
+                    }
+                    break;
+                }
+            }
+            
+        }
+        return null;
+        
+    }
+
     class Node {
         private int value;
         private Node next;
@@ -83,16 +108,17 @@ public class LLcycle {
     public static void main(String[] args) {
         LLcycle l1 = new LLcycle();
         l1.insertFirst(1);
-        l1.insertFirst(2);
-        l1.insertFirst(3);
-        l1.insertFirst(4);
-        l1.insertFirst(5);
-        l1.insertFirst(6);
-        l1.display();
-        l1.tail.next=l1.head.next;
+        // l1.insertFirst(2);
+        // l1.insertFirst(3);
+        // l1.insertFirst(4);
+        // l1.insertFirst(5);
+        // l1.insertFirst(6);
+        // l1.display();
+        // l1.tail.next=l1.head.next.next;
         System.out.println(l1.isCycle(l1));
         System.out.println(l1.length_of_cycle(l1));
-        // l1.display();
+        Node ans=l1.detectCycle(l1.head);
+        System.out.println(ans.value);
     }
 
 }
