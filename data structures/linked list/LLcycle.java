@@ -1,10 +1,10 @@
 public class LLcycle {
-    private Node head;
+    private ListNode head;
     private int size;
-    private Node tail;
+    private ListNode tail;
 
     public void insertFirst(int value) {
-        Node node = new Node(value);
+        ListNode node = new ListNode(value);
         node.next = head;
         head = node;
         if (tail == null) {
@@ -13,13 +13,13 @@ public class LLcycle {
         size += 1;
     }
 
-    public boolean isCycle(LLcycle list){
-        Node slow=list.head;
-        Node fast=list.head; 
-        while (fast.next!=null && fast!=null) {
-            fast=fast.next.next;
-            slow=slow.next;
-            if(slow==fast){
+    public boolean isCycle(LLcycle list) {
+        ListNode slow = list.head;
+        ListNode fast = list.head;
+        while (fast.next != null && fast != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (slow == fast) {
                 return true;
             }
         }
@@ -27,98 +27,127 @@ public class LLcycle {
     }
 
     public void display() {
-        Node temp = head;
+        ListNode temp = head;
         while (temp != null) {
-            System.out.print(temp.value + "->");
+            System.out.print(temp.val + "->");
             temp = temp.next;
 
         }
         System.out.println("end");
     }
 
-    public  int length_of_cycle(LLcycle list){
-        int len=0;
-        if(isCycle(list)){
-            Node slow=head;
-            Node fast=head;
-            while (fast.next!=null && fast!=null) {
-                
-                fast=fast.next.next;
-                slow=slow.next;
-                if(slow==fast){
-                    Node temp=slow;
+    public int length_of_cycle(LLcycle list) {
+        int len = 0;
+        if (isCycle(list)) {
+            ListNode slow = head;
+            ListNode fast = head;
+            while (fast.next != null && fast != null) {
+
+                fast = fast.next.next;
+                slow = slow.next;
+                if (slow == fast) {
+                    ListNode temp = slow;
                     // System.out.println(temp.value);
-                    do{
-                        len+=1;
-                        temp=temp.next;
-                    }
-                    while(temp!=slow);
+                    do {
+                        len += 1;
+                        temp = temp.next;
+                    } while (temp != slow);
                     break;
                 }
-                
-                
+
             }
 
-
         }
-        
+
         return len;
     }
 
-    public Node detectCycle(Node head) {
-        Node slow=head;
-        Node fast=head;
-        while (fast!=null && fast.next!=null) {
-            fast=fast.next.next;
-            slow=slow.next;
-            if(slow==fast){
-                Node ptr1=head;
-                Node ptr2=slow;
-                while (ptr1!=ptr2) {
-                    
-                    ptr2=ptr2.next;
-                    ptr1=ptr1.next;
-                    if(ptr1==ptr2){
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (slow == fast) {
+                ListNode ptr1 = head;
+                ListNode ptr2 = slow;
+                while (ptr1 != ptr2) {
+
+                    ptr2 = ptr2.next;
+                    ptr1 = ptr1.next;
+                    if (ptr1 == ptr2) {
                         return ptr1;
                     }
                     break;
                 }
             }
-            
+
         }
         return null;
-        
+
     }
 
-    class Node {
-        private int value;
-        private Node next;
+    public ListNode removeElements(ListNode head, int val) {
 
-        public Node(int value) {
-            this.value = value;
+        while (head != null && head.val == val) {
+            head = head.next;
+        }
+
+        ListNode tmp = head;
+        while (tmp != null && tmp.next != null) {
+            if (tmp.next.val == val) {
+                // tmp.next = tmp.next.next;
+                ListNode tmp1 = tmp.next;
+                while (tmp1 != null && tmp1.val == val)
+                    tmp1 = tmp1.next;
+                tmp.next = tmp1;
+            }
+            tmp = tmp.next;
+        }
+
+        return head;
+
+    }
+
+    class ListNode {
+        private int val;
+        private ListNode next;
+
+        public ListNode(int value) {
+            this.val = value;
 
         }
 
-        public Node(int value, Node next) {
+        public ListNode(int value, ListNode next) {
             this.next = next;
-            this.value = value;
+            this.val = value;
         }
     }
 
     public static void main(String[] args) {
         LLcycle l1 = new LLcycle();
         l1.insertFirst(1);
-        // l1.insertFirst(2);
-        // l1.insertFirst(3);
-        // l1.insertFirst(4);
-        // l1.insertFirst(5);
-        // l1.insertFirst(6);
+        l1.insertFirst(2);
+        l1.insertFirst(3);
+        l1.insertFirst(4);
+        l1.insertFirst(5);
+        l1.insertFirst(6);
+        l1.insertFirst(5);
         // l1.display();
         // l1.tail.next=l1.head.next.next;
-        System.out.println(l1.isCycle(l1));
-        System.out.println(l1.length_of_cycle(l1));
-        Node ans=l1.detectCycle(l1.head);
-        System.out.println(ans.value);
+        // System.out.println(l1.isCycle(l1));
+        // System.out.println(l1.length_of_cycle(l1));
+        // Node ans=l1.detectCycle(l1.head);
+        // System.out.println(ans.value);\
+        l1.display();
+
+        ListNode ans = l1.removeElements(l1.head, 5);
+        // System.out.println(ans.value);
+        // ans.display();
+        while(ans!=null){
+            System.out.print(ans.val+"->");
+            ans = ans.next;
+        }
     }
 
 }

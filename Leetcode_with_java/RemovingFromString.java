@@ -2,8 +2,8 @@ public class RemovingFromString {
     public static void main(String[] args) {
         String str="aabbapplasssappleaaa";
         StringBuilder ans=new StringBuilder();
-        // System.out.println(removed(str, 0, ans));
-        System.out.println(removingAppNotApple(str));
+        System.out.println(removed(str, 0, ans));
+        // System.out.println(removingAppNotApple(str));
     }
     static StringBuilder removed(String str,int i,StringBuilder ans){
         if(i==str.length()){

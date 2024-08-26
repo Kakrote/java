@@ -42,6 +42,7 @@ public class LLC {
         insert(3);
         insert(4);
         insert(5);
+
         
 
         display();
@@ -111,4 +112,35 @@ public class LLC {
         return null;
         
     }
+
+    public ListNode removeElements(ListNode head, int val) {
+     
+        ListNode ptr1=head;
+        ListNode ptr2=head;
+        // ListNode node;
+        while (ptr2!=null) {
+            ptr1.next=ptr2;
+            if(ptr2.val==val){
+                ptr1.next=ptr2.next;
+            }
+            ptr2=ptr2.next;
+            
+        }
+        return ptr1;
+        
+    }
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;      // Initialize prev to null
+        ListNode current = head;   // Start current at the head of the list
+        
+        while (current != null) {  // Traverse the list until the end
+            ListNode next = current.next; // Temporarily store the next node
+            current.next = prev;          // Reverse the current node's pointer
+            prev = current;               // Move prev and current one step forward
+            current = next;
+        }
+        
+        return prev; // prev will be the new head of the reversed list
+    }
+    
 }
