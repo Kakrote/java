@@ -8,9 +8,12 @@ public class MazeProblems {
         // paths("",3,3);
         // System.out.println(pathsList("", 3, 3));
         boolean bord [][]={
-            {true,true,true},
-            {true,false,true},
-            {true,true,true}
+            {true,true,true,false,false},
+            {false,false,true,false,false},
+            {false,false,true,true,true},
+            {false,false,false,true,true},
+            {true,true,true,true,true},
+            {true,false,false,false,true},
         };
         pathsObsticals("", bord, 0, 0);// passing the starting index 
         
@@ -31,10 +34,10 @@ public class MazeProblems {
             return;
         }
         if(r>1){
-            paths(p+'D', r-1, c);
+            paths(p+'S', r-1, c);
         }
         if(c>1){
-            paths(p+'R', r, c-1);
+            paths(p+'E', r, c-1);
         }
     }
     static List<String> pathsList(String p,int r,int c){
@@ -46,11 +49,11 @@ public class MazeProblems {
         List<String> down=new ArrayList<>();
         List<String> right=new ArrayList<>();
         if(r>1){
-            down=pathsList(p+'D', r-1, c);
+            down=pathsList(p+'S', r-1, c);
 
         }
         if(c>1){
-            right=pathsList(p+'R', r, c-1);
+            right=pathsList(p+'E', r, c-1);
         }
         down.addAll(right);
         return down;
@@ -65,10 +68,10 @@ public class MazeProblems {
             return;
         }
         if(r<maze.length-1){
-            pathsObsticals(p+'D',maze, r+1, c);
+            pathsObsticals(p+'S',maze, r+1, c);
         }
         if(c<maze[0].length-1){
-            pathsObsticals(p+'R',maze, r, c+1);
+            pathsObsticals(p+'E',maze, r, c+1);
         }
     }
 }
